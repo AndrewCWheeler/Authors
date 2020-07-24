@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import AuthorForm from '../components/AuthorForm';
 import axios from 'axios';
-import { navigate } from '@reach/router';
+import { Link, navigate } from '@reach/router';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 const CreateAuthor = props => {
   const [author, setAuthor] = useState({
@@ -53,16 +54,28 @@ const CreateAuthor = props => {
       });
   };
   return (
-    <div>
-      <h1>Create Author View</h1>
-      <AuthorForm
-        data={author}
-        setData={setAuthor}
-        submitData={submitData}
-        errors={errors}
-        onChangeHandler={onChangeHandler}
-      />
-    </div>
+    <Container>
+      <Row>
+        <h1>Create Author View</h1>
+      </Row>
+      <Row>
+        <AuthorForm
+          data={author}
+          setData={setAuthor}
+          submitData={submitData}
+          errors={errors}
+          onChangeHandler={onChangeHandler}
+        />
+      </Row>
+      <Row>
+        <Col sm='6' className='ml-1'>
+          <Link to='/'>
+            <Button className='btn-secondary btn-lg btn-block'>Cancel</Button>
+          </Link>
+        </Col>
+        <Col></Col>
+      </Row>
+    </Container>
   );
 };
 

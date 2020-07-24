@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import AuthorForm from '../components/AuthorForm';
 import DeleteButton from '../components/DeleteButton';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { navigate } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 
 const EditAuthor = props => {
   const { id } = props;
@@ -66,19 +67,30 @@ const EditAuthor = props => {
       });
   };
   return (
-    <div>
-      <h1>Editing {author.name}</h1>
-
-      <AuthorForm
-        data={author}
-        setData={setAuthor}
-        submitData={submitData}
-        errors={errors}
-        onChangeHandler={onChangeHandler}
-      />
-
-      <DeleteButton />
-    </div>
+    <Container>
+      <Row>
+        <h1>Editing {author.name}</h1>
+      </Row>
+      <Row>
+        <AuthorForm
+          data={author}
+          setData={setAuthor}
+          submitData={submitData}
+          errors={errors}
+          onChangeHandler={onChangeHandler}
+        />
+      </Row>
+      <Row>
+        <Col sm='5'>
+          <Link to='/'>
+            <Button className='btn-secondary btn-sm'>Cancel</Button>
+          </Link>
+        </Col>
+        <Col sm='5'>
+          <DeleteButton />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
